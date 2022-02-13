@@ -14,6 +14,9 @@ public class SpaceShipController : MonoBehaviour
     public float leftBoundary;
     public float rightBoundary;
     public GameObject bullet;
+    public float bulletSpeed;
+    //need to set up max speed of spaceship.
+   // private float maxShipSpeed = 200;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +29,7 @@ public class SpaceShipController : MonoBehaviour
     {
         checkMovement();
         ScreenWrapper();
+        fireBullet();
 
     }
     void FixedUpdate()
@@ -81,7 +85,15 @@ public class SpaceShipController : MonoBehaviour
     /**
      * Checks input from mouse to fire bullet.
      **/
-    
+    private void fireBullet()
+    {
+        if(Input.GetButtonDown("Fire"))
+        {
+            GameObject newBullet = Instantiate(bullet, transform.position, transform.rotation);
+            newBullet.GetComponent<Rigidbody2D>().AddRelativeForce(Vector2.up * bulletSpeed);
+            Destroy(newBullet, 5.0f);
+        }
+    }
 
 
 }
