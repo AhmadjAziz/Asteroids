@@ -13,18 +13,20 @@ public class SpaceShipController : MonoBehaviour
     public float lowerBoundary;
     public float leftBoundary;
     public float rightBoundary;
+    public GameObject bullet;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        checkInput();
+        checkMovement();
         ScreenWrapper();
+
     }
     void FixedUpdate()
     {
@@ -35,7 +37,7 @@ public class SpaceShipController : MonoBehaviour
      * Checks for input from keyboard, W,A,S.
      * D is unassigned from unity InputManager as no backward movement.
      * **/
-    private void checkInput()
+    private void checkMovement()
     {
         thrustInput = Input.GetAxis("Vertical");
         rotationalInput = Input.GetAxis("Horizontal");
@@ -75,5 +77,11 @@ public class SpaceShipController : MonoBehaviour
         }
         transform.position = newPosition;
     }
+
+    /**
+     * Checks input from mouse to fire bullet.
+     **/
+    
+
 
 }
