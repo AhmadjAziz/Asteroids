@@ -28,13 +28,14 @@ public class SpaceShipController : MonoBehaviour
     void Update()
     {
         checkMovement();
+        addThrust();
         ScreenWrapper();
         fireBullet();
 
     }
     void FixedUpdate()
     {
-        addThrust();
+       
     }
 
     /**
