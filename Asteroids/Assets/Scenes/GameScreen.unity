@@ -217,6 +217,7 @@ GameObject:
   - component: {fileID: 1769169143}
   - component: {fileID: 1769169142}
   - component: {fileID: 1769169141}
+  - component: {fileID: 1769169144}
   m_Layer: 0
   m_Name: SpaceShip
   m_TagString: Untagged
@@ -237,8 +238,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_LinearDrag: 0.1
+  m_AngularDrag: 0.8
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -304,9 +305,26 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1769169140}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.2005, y: -3.2005, z: 0}
+  m_LocalPosition: {x: -0.15, y: 0, z: 0}
   m_LocalScale: {x: 0.29420513, y: 0.29420513, z: 0.29420513}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1769169144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1769169140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bce1d5f0d7b601d429f0d3b9679bee23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 1769169141}
+  upperBoundary: 11
+  lowerBoundary: -11
+  leftBoundary: -18.6
+  rightBoundary: 18.6
