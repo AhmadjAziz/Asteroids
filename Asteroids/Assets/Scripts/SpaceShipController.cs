@@ -27,22 +27,22 @@ public class SpaceShipController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        checkMovement();
-        addThrust();
+        CheckMovement();
         ScreenWrapper();
-        fireBullet();
+        FireBullet();
 
     }
     void FixedUpdate()
     {
-       
+        //Add some thrust every few frame to give that delayed feel of old retro games.
+        AddThrust();
     }
 
     /**
      * Checks for input from keyboard, W,A,S.
      * D is unassigned from unity InputManager as no backward movement.
      * **/
-    private void checkMovement()
+    private void CheckMovement()
     {
         thrustInput = Input.GetAxis("Vertical");
         rotationalInput = Input.GetAxis("Horizontal");
@@ -51,7 +51,7 @@ public class SpaceShipController : MonoBehaviour
     /**
      * Adds relative force that acclerates over time.
      **/
-    private void addThrust()
+    private void AddThrust()
     {
         rb.AddRelativeForce(Vector2.up * thrustInput);
         //The negative sign helps invert the keys
@@ -86,7 +86,7 @@ public class SpaceShipController : MonoBehaviour
     /**
      * Checks input from mouse to fire bullet.
      **/
-    private void fireBullet()
+    private void FireBullet()
     {
         if(Input.GetButtonDown("Fire"))
         {
