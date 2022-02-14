@@ -6,7 +6,7 @@ public class SpaceShipController : MonoBehaviour
 {
     public Rigidbody2D rb;
     //public float thrust;
-    //public float rotationalThrust;
+    public float rotationalThrust;
     private float thrustInput;
     private float rotationalInput;
     public float upperBoundary;
@@ -55,7 +55,7 @@ public class SpaceShipController : MonoBehaviour
     {
         rb.AddRelativeForce(Vector2.up * thrustInput);
         //The negative sign helps invert the keys
-        rb.AddTorque(-rotationalInput);
+       // rb.AddTorque(-rotationalInput);
     }
 
     /**
@@ -63,6 +63,8 @@ public class SpaceShipController : MonoBehaviour
      **/
     private void ScreenWrapper()
     {
+
+        transform.Rotate(Vector3.forward * rotationalInput *Time.deltaTime * -rotationalThrust);
         Vector2 newPosition = transform.position;
         if (transform.position.y > upperBoundary)
         {
