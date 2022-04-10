@@ -2,15 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class AsteroidAi : MonoBehaviour
 {
-    public float maxThrust;
-    public float maxTorque;
-    public Rigidbody2D rb;
-    public float upperBoundary;
-    public float lowerBoundary;
-    public float leftBoundary;
-    public float rightBoundary;
+    [SerializeField] private float maxThrust;
+    [SerializeField] private float maxTorque;
+    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private float upperBoundary;
+    [SerializeField] private float lowerBoundary;
+    [SerializeField] private float leftBoundary;
+    [SerializeField] private float rightBoundary;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +25,7 @@ public class AsteroidAi : MonoBehaviour
         ScreenWrapper();
     }
 
+    //Moves the asteroids in random directions at the start of the scence.
     private void AsteroidPush()
     {
         Vector2 thrust = new Vector2
@@ -33,6 +35,7 @@ public class AsteroidAi : MonoBehaviour
         rb.AddTorque(torque);
     }
 
+    //Makes it so that if asteroids go out of game view it comes back in from the other side.
     private void ScreenWrapper()
     {
         Vector2 newPosition = transform.position;
