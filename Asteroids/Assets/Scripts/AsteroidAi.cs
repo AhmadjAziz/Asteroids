@@ -12,11 +12,15 @@ public class AsteroidAi : MonoBehaviour
     [SerializeField] private float lowerBoundary;
     [SerializeField] private float leftBoundary;
     [SerializeField] private float rightBoundary;
+    [SerializeField] private int asteroidSize; //3 = Large, 2 = Medium, 1 = Small
+    [SerializeField] private GameObject asteroidMedium;
+    [SerializeField] private GameObject asteroidSmall;
 
     // Start is called before the first frame update
     void Start()
     {
         AsteroidPush();
+         //Large size.
     }
 
     // Update is called once per frame
@@ -62,6 +66,32 @@ public class AsteroidAi : MonoBehaviour
     //Collision between asteroid and objects. i.e bullet.
     void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(collision.gameObject);
+        //Checks by tag for a bullet trigger.
+        if (collision.CompareTag("bullet"))
+        {
+            //destroy the bullet.
+            Destroy(collision.gameObject);
+            
+            //Check the size and based on spawn the next asteroid.
+            if(asteroidSize == 3)
+            {
+                //Spawn two medium asteroid.
+                Instantiate(asteroidMedium, transform.position, transform.rotation);
+                Instantiate(asteroidMedium, transform.position, transform.rotation);               
+            } else if(asteroidSize == 2)
+            {
+                //Spawn two small asteroids.
+                Instantiate(asteroidSmall, transform.position, transform.rotation);
+                Instantiate(asteroidSmall, transform.position, transform.rotation);
+            } else if (asteroidSize == 1)
+            {
+                    //Destroy final asteroid.
+
+            }
+            //Destroys the current asteroid hit by bullet.
+            Destroy(gameObject);
+
+        }
+        
     }
 }

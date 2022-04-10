@@ -100,6 +100,7 @@ public class SpaceShipController : MonoBehaviour
         }
     }
 
+    //spaceship colliding with asteroid.
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.relativeVelocity.magnitude > deathForce)
