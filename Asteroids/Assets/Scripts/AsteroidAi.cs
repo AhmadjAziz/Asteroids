@@ -23,6 +23,7 @@ public class AsteroidAi : MonoBehaviour
     void Update()
     {
         ScreenWrapper();
+        
     }
 
     //Moves the asteroids in random directions at the start of the scence.
@@ -56,5 +57,10 @@ public class AsteroidAi : MonoBehaviour
             newPosition.x = rightBoundary;
         }
         transform.position = newPosition;
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        Destroy(collision.gameObject);
     }
 }
