@@ -96,8 +96,8 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
+  m_UseAutoMass: 1
+  m_Mass: 1.9586316
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -137,7 +137,10 @@ MonoBehaviour:
   maxThrust: 200
   maxTorque: 20
   rb: {fileID: 7902416232612684937}
-  upperBoundary: 10.5
-  lowerBoundary: -10.5
-  leftBoundary: -18.3
-  rightBoundary: 18.3
+  upperBoundary: 20.8
+  lowerBoundary: -20.8
+  leftBoundary: -36.5
+  rightBoundary: 36.5
+  asteroidSize: 2
+  asteroidMedium: {fileID: 7902416232612684930}
+  asteroidSmall: {fileID: 4239803337805891450, guid: d952e4f4e2bfbf846b5f091a3904bf4c, type: 3}
