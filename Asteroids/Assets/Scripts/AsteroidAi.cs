@@ -59,6 +59,7 @@ public class AsteroidAi : MonoBehaviour
         transform.position = newPosition;
     }
 
+    //Collision between asteroid and objects. i.e bullet.
     void OnTriggerEnter2D(Collider2D collision)
     {
         Destroy(collision.gameObject);

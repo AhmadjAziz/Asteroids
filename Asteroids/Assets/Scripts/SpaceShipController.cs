@@ -2,19 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class SpaceShipController : MonoBehaviour
 {
-    public Rigidbody2D rb;
+    [SerializeField] private Rigidbody2D rb;
     //public float thrust;
-    public float rotationalThrust;
-    private float thrustInput;
-    private float rotationalInput;
-    public float upperBoundary;
-    public float lowerBoundary;
-    public float leftBoundary;
-    public float rightBoundary;
-    public GameObject bullet;
-    public float bulletSpeed;
+    [SerializeField] private float rotationalThrust;
+    [SerializeField] private float thrustInput;
+    [SerializeField] private float rotationalInput;
+    [SerializeField] private float upperBoundary;
+    [SerializeField] private float lowerBoundary;
+    [SerializeField] private float leftBoundary;
+    [SerializeField] private float rightBoundary;
+    [SerializeField] private GameObject bullet;
+    [SerializeField] private float bulletSpeed;
+    [SerializeField] private float deathForce;
     //need to set up max speed of spaceship.
    // private float maxShipSpeed = 200;
 
@@ -95,6 +97,14 @@ public class SpaceShipController : MonoBehaviour
             GameObject newBullet = Instantiate(bullet, transform.position, transform.rotation);
             newBullet.GetComponent<Rigidbody2D>().AddRelativeForce(Vector2.up * bulletSpeed);
             Destroy(newBullet, 5.0f);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.relativeVelocity.magnitude > deathForce)
+        {
+            Debug.Log("Death");
         }
     }
 
