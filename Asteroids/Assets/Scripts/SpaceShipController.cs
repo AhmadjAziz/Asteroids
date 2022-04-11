@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody))]
 public class SpaceShipController : MonoBehaviour
@@ -16,14 +17,23 @@ public class SpaceShipController : MonoBehaviour
     [SerializeField] private float rightBoundary;
     [SerializeField] private GameObject bullet;
     [SerializeField] private float bulletSpeed;
-    [SerializeField] private float deathForce;
+    [SerializeField] private int lives;
+    //UI fields
+    [SerializeField] private Text scoreText;
+    [SerializeField] private Text livesText;
+
+    private int score;
     //need to set up max speed of spaceship.
    // private float maxShipSpeed = 200;
 
     // Start is called before the first frame update
     void Start()
     {
+        //starts with no points.
+        score = 0;
+        scoreText.text = "Score: " + score;
 
+        livesText.text = "Lives: " + lives;
     }
 
     // Update is called once per frame
@@ -100,14 +110,24 @@ public class SpaceShipController : MonoBehaviour
         }
     }
 
-    //spaceship colliding with asteroid.
+    void PointsScore(int points)
+    {
+        score += points;
+        scoreText.text = "Score: " + score;
+    }
+
+    //spaceship colliding with asteroid. Player dies if lives end.
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.relativeVelocity.magnitude > deathForce)
+        lives--;
+        if (lives <= 0)
         {
-            Debug.Log("Death");
+            //GameOver();
         }
+        livesText.text = "Lives: " + lives;
+        Destroy(collision.gameObject);
     }
+
 
 
 }

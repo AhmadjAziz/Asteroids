@@ -144,3 +144,5 @@ MonoBehaviour:
   asteroidSize: 1
   asteroidMedium: {fileID: 0}
   asteroidSmall: {fileID: 0}
+  points: 8
+  spaceship: {fileID: 0}

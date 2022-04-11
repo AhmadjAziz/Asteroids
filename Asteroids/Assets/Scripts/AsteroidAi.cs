@@ -15,12 +15,16 @@ public class AsteroidAi : MonoBehaviour
     [SerializeField] private int asteroidSize; //3 = Large, 2 = Medium, 1 = Small
     [SerializeField] private GameObject asteroidMedium;
     [SerializeField] private GameObject asteroidSmall;
+    [SerializeField] private int points;
+    public GameObject spaceship;
 
     // Start is called before the first frame update
     void Start()
     {
         AsteroidPush();
-         //Large size.
+
+        //Find Player.
+        spaceship = GameObject.FindWithTag("Player");
     }
 
     // Update is called once per frame
@@ -77,7 +81,10 @@ public class AsteroidAi : MonoBehaviour
             {
                 //Spawn two medium asteroid.
                 Instantiate(asteroidMedium, transform.position, transform.rotation);
-                Instantiate(asteroidMedium, transform.position, transform.rotation);               
+                Instantiate(asteroidMedium, transform.position, transform.rotation);   
+                
+                // should send an event so that space ship knows to add points
+
             } else if(asteroidSize == 2)
             {
                 //Spawn two small asteroids.
@@ -89,6 +96,7 @@ public class AsteroidAi : MonoBehaviour
 
             }
             //Destroys the current asteroid hit by bullet.
+            spaceship.SendMessage("PointsScore", points);
             Destroy(gameObject);
 
         }
