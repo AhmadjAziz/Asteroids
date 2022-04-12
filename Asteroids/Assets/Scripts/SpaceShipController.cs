@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class SpaceShipController : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
-    //public float thrust;
     [SerializeField] private float rotationalThrust;
     [SerializeField] private float thrustInput;
     [SerializeField] private float rotationalInput;
@@ -18,7 +17,9 @@ public class SpaceShipController : MonoBehaviour
     [SerializeField] private GameObject bullet;
     [SerializeField] private float bulletSpeed;
     [SerializeField] private int lives;
-    //UI fields
+    [SerializeField] private GameObject shipCollision;
+    [SerializeField] private GameObject shipDestroy;
+    //[SerializeField] private AudioSource audio;
     [SerializeField] private Text scoreText;
     [SerializeField] private Text livesText;
 
@@ -119,13 +120,25 @@ public class SpaceShipController : MonoBehaviour
     //spaceship colliding with asteroid. Player dies if lives end.
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        //subtracts life on collision
         lives--;
+        livesText.text = "Lives: " + lives;
+
         if (lives <= 0)
         {
+            GameObject newDestroy = Instantiate(shipDestroy, transform.position, transform.rotation);
+            Destroy(newDestroy, 2f);
+            
             //GameOver();
         }
-        livesText.text = "Lives: " + lives;
+        //plays the collision sound.
+        //audio.Play();
+        //causes a tiny explosion when spaceship collides with asteroid.
+        GameObject newExplosion = Instantiate(shipCollision, transform.position, transform.rotation);
+        Destroy(newExplosion, 2f);
         Destroy(collision.gameObject);
+        
+       
     }
 
 

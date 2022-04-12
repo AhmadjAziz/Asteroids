@@ -16,7 +16,10 @@ public class AsteroidAi : MonoBehaviour
     [SerializeField] private GameObject asteroidMedium;
     [SerializeField] private GameObject asteroidSmall;
     [SerializeField] private int points;
-    public GameObject spaceship;
+    [SerializeField] private GameObject onHitEffect;
+
+    private GameObject spaceship;
+
 
     // Start is called before the first frame update
     void Start()
@@ -97,6 +100,11 @@ public class AsteroidAi : MonoBehaviour
             }
             //Destroys the current asteroid hit by bullet.
             spaceship.SendMessage("PointsScore", points);
+
+            //Causes an explosion at the asteroid hit by bullet.
+            GameObject newExplosion = Instantiate(onHitEffect, transform.position, transform.rotation);
+            Destroy(newExplosion, 2f);
+            //Destroys the old asteroid
             Destroy(gameObject);
 
         }
