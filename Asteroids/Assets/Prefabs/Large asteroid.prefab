@@ -142,7 +142,9 @@ MonoBehaviour:
   leftBoundary: -38
   rightBoundary: 38
   asteroidSize: 3
-  asteroidMedium: {fileID: 7902416232612684930, guid: bb5233aa632d8e54887239859c3135d7, type: 3}
-  asteroidSmall: {fileID: 4239803337805891450, guid: d952e4f4e2bfbf846b5f091a3904bf4c, type: 3}
+  asteroidMedium: {fileID: 7902416232612684930, guid: bb5233aa632d8e54887239859c3135d7,
+    type: 3}
+  asteroidSmall: {fileID: 4239803337805891450, guid: d952e4f4e2bfbf846b5f091a3904bf4c,
+    type: 3}
   points: 2
-  spaceship: {fileID: 0}
+  onHitEffect: {fileID: 0}

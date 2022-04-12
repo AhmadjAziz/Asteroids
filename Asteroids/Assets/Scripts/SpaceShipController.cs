@@ -4,9 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(SpriteRenderer))]
 public class SpaceShipController : MonoBehaviour
 {
-    [SerializeField] private Rigidbody2D rb;
+    
     [SerializeField] private float rotationalThrust;
     [SerializeField] private float thrustInput;
     [SerializeField] private float rotationalInput;
@@ -17,16 +18,26 @@ public class SpaceShipController : MonoBehaviour
     [SerializeField] private GameObject bullet;
     [SerializeField] private float bulletSpeed;
     [SerializeField] private int lives;
+    [SerializeField] private BoxCollider2D horizontalCollider;
+    [SerializeField] private BoxCollider2D verticalCollider;
     [SerializeField] private GameObject shipCollision;
     [SerializeField] private GameObject shipDestroy;
-    //[SerializeField] private AudioSource audio;
+    [SerializeField] private Color inColor;
+    [SerializeField] private Color normColor;
     [SerializeField] private Text scoreText;
     [SerializeField] private Text livesText;
-
+    
+    private Rigidbody2D rb;
+    private SpriteRenderer sr;
     private int score;
     //need to set up max speed of spaceship.
-   // private float maxShipSpeed = 200;
+    // private float maxShipSpeed = 200;
 
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -117,6 +128,25 @@ public class SpaceShipController : MonoBehaviour
         scoreText.text = "Score: " + score;
     }
 
+    /**
+     * can be callled to make player invincible.
+     **/
+    void Invincibility()
+    {
+        horizontalCollider.enabled = false;
+        verticalCollider.enabled = false;
+        sr.color = inColor;
+    }
+    /**
+     * Turns off invinciblity.
+     **/
+    void Targetable()
+    {
+        horizontalCollider.enabled = true;
+        verticalCollider.enabled = true;
+        sr.color = normColor;
+    }
+
     //spaceship colliding with asteroid. Player dies if lives end.
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -132,13 +162,15 @@ public class SpaceShipController : MonoBehaviour
             //GameOver();
         }
         //plays the collision sound.
-        //audio.Play();
         //causes a tiny explosion when spaceship collides with asteroid.
         GameObject newExplosion = Instantiate(shipCollision, transform.position, transform.rotation);
         Destroy(newExplosion, 2f);
         Destroy(collision.gameObject);
-        
-       
+
+        //Makes player invincible for 2 seconds after taking damage to not get hit multiple times at same time.
+        Invincibility();
+        Invoke("Targetable",2f);
+                         
     }
 
 
