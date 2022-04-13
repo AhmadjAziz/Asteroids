@@ -30,6 +30,8 @@ public class SpaceShipController : MonoBehaviour
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject spaceship;
 
+
+    private ManageGame mg;
     private Rigidbody2D rb;
     private SpriteRenderer sr;
     private int score;
@@ -49,6 +51,7 @@ public class SpaceShipController : MonoBehaviour
         score = 0;
         scoreText.text = "Score: " + score;
         livesText.text = "Lives: " + lives;
+        mg = GameObject.FindObjectOfType<ManageGame>();
     }
 
     // Update is called once per frame
@@ -163,16 +166,17 @@ public class SpaceShipController : MonoBehaviour
             GameOver();
             return;
         }
-        //plays the collision sound.
+
         //causes a tiny explosion when spaceship collides with asteroid.
         GameObject newExplosion = Instantiate(shipCollision, transform.position, transform.rotation);
         Destroy(newExplosion, 2f);
+        //Destroy the object spaceship collides with.
         Destroy(collision.gameObject);
+        mg.UpdateNumAsteroids(-1);
 
         //Makes player invincible for 2 seconds after taking damage to not get hit multiple times at same time.
         Invulnerable();
-        Invoke("Targetable",3f);
-                         
+        Invoke("Targetable",3f);                    
     }
 
     void GameOver()
