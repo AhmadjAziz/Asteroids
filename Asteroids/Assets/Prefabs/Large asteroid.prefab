@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e35194be605160e4586f8417937056bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxThrust: 500
+  maxThrust: 600
   maxTorque: 20
   rb: {fileID: 7284548326279396521}
   upperBoundary: 22
