@@ -39,9 +39,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Fire
-    uniqueID: 3804908061
+  - name: Background
+    uniqueID: 1715740389
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Effects
+    uniqueID: 2918083299
     locked: 0

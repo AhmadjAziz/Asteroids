@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2920399885826378397}
   - component: {fileID: 2920399885826378398}
   m_Layer: 0
-  m_Name: SpaceShip
+  m_Name: Spaceship
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -119,7 +119,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bce1d5f0d7b601d429f0d3b9679bee23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 2920399885826378386}
   rotationalThrust: 80
   thrustInput: 0
   rotationalInput: 0
@@ -136,8 +135,12 @@ MonoBehaviour:
     type: 3}
   shipDestroy: {fileID: 1121192042590650, guid: e1b08032bec16ba4eb1ae23cbd572664,
     type: 3}
+  inColor: {r: 0, g: 0, b: 0, a: 0}
+  normColor: {r: 0, g: 0, b: 0, a: 0}
   scoreText: {fileID: 0}
   livesText: {fileID: 0}
+  gameOverPanel: {fileID: 0}
+  spaceship: {fileID: 0}
 --- !u!61 &2920399885826378397
 BoxCollider2D:
   m_ObjectHideFlags: 0

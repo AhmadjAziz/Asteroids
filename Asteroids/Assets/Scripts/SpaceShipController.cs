@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(SpriteRenderer))]
@@ -26,7 +27,9 @@ public class SpaceShipController : MonoBehaviour
     [SerializeField] private Color normColor;
     [SerializeField] private Text scoreText;
     [SerializeField] private Text livesText;
-    
+    [SerializeField] private GameObject gameOverPanel;
+    [SerializeField] private GameObject spaceship;
+
     private Rigidbody2D rb;
     private SpriteRenderer sr;
     private int score;
@@ -37,6 +40,7 @@ public class SpaceShipController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        
     }
     // Start is called before the first frame update
     void Start()
@@ -44,7 +48,6 @@ public class SpaceShipController : MonoBehaviour
         //starts with no points.
         score = 0;
         scoreText.text = "Score: " + score;
-
         livesText.text = "Lives: " + lives;
     }
 
@@ -131,7 +134,7 @@ public class SpaceShipController : MonoBehaviour
     /**
      * can be callled to make player invincible.
      **/
-    void Invincibility()
+    void Invulnerable()
     {
         horizontalCollider.enabled = false;
         verticalCollider.enabled = false;
@@ -156,10 +159,9 @@ public class SpaceShipController : MonoBehaviour
 
         if (lives <= 0)
         {
-            GameObject newDestroy = Instantiate(shipDestroy, transform.position, transform.rotation);
-            Destroy(newDestroy, 2f);
-            
-            //GameOver();
+           
+            GameOver();
+            return;
         }
         //plays the collision sound.
         //causes a tiny explosion when spaceship collides with asteroid.
@@ -168,11 +170,25 @@ public class SpaceShipController : MonoBehaviour
         Destroy(collision.gameObject);
 
         //Makes player invincible for 2 seconds after taking damage to not get hit multiple times at same time.
-        Invincibility();
-        Invoke("Targetable",2f);
+        Invulnerable();
+        Invoke("Targetable",3f);
                          
     }
 
+    void GameOver()
+    {
+        GameObject newDestroy = Instantiate(shipDestroy, transform.position, transform.rotation);
+        Destroy(newDestroy, 2f);
+        //should chage this code
+        Invulnerable();
+        gameOverPanel.SetActive(true);
+        Destroy(spaceship);
+        
+    }
 
-
+    //Invookes when play again is clicked in death menu.
+    public void PlayAgain()
+    {
+        SceneManager.LoadScene("GameScreen");
+    }
 }
