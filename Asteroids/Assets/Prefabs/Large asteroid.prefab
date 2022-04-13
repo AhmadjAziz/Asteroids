@@ -147,4 +147,5 @@ MonoBehaviour:
   asteroidSmall: {fileID: 4239803337805891450, guid: d952e4f4e2bfbf846b5f091a3904bf4c,
     type: 3}
   points: 2
-  onHitEffect: {fileID: 0}
+  onHitEffect: {fileID: 1000011128802252, guid: 96730f8640590934eacb6f860058e7f9,
+    type: 3}
