@@ -19,6 +19,7 @@ public class SpaceShipController : MonoBehaviour
     [SerializeField] private GameObject bullet;
     [SerializeField] private float bulletSpeed;
     [SerializeField] private int lives;
+    [SerializeField] private bool canHit = true;
     [SerializeField] private BoxCollider2D horizontalCollider;
     [SerializeField] private BoxCollider2D verticalCollider;
     [SerializeField] private GameObject shipCollision;
@@ -35,6 +36,7 @@ public class SpaceShipController : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer sr;
     private int score;
+
     //need to set up max speed of spaceship.
     // private float maxShipSpeed = 200;
 
@@ -52,6 +54,7 @@ public class SpaceShipController : MonoBehaviour
         scoreText.text = "Score: " + score;
         livesText.text = "Lives: " + lives;
         mg = GameObject.FindObjectOfType<ManageGame>();
+       
     }
 
     // Update is called once per frame
@@ -139,6 +142,7 @@ public class SpaceShipController : MonoBehaviour
      **/
     void Invulnerable()
     {
+        canHit = false;
         horizontalCollider.enabled = false;
         verticalCollider.enabled = false;
         sr.color = inColor;
@@ -148,35 +152,48 @@ public class SpaceShipController : MonoBehaviour
      **/
     void Targetable()
     {
+        canHit = true;
         horizontalCollider.enabled = true;
         verticalCollider.enabled = true;
         sr.color = normColor;
     }
 
     //spaceship colliding with asteroid. Player dies if lives end.
-    private void OnCollisionEnter2D(Collision2D collision)
+     void OnCollisionEnter2D(Collision2D collision)
     {
-        //subtracts life on collision
+        LoseLife();
+        // destroy the item spaceship collides with.
+        Destroy(collision.gameObject);
+        mg.UpdateNumAsteroids(-1);
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("EnemyBullet") && canHit ==true)
+        {
+            LoseLife();
+            Destroy(other.gameObject);
+        }
+    }
+
+    void LoseLife()
+    {
         lives--;
         livesText.text = "Lives: " + lives;
 
         if (lives <= 0)
         {
-           
             GameOver();
             return;
         }
 
         //causes a tiny explosion when spaceship collides with asteroid.
         GameObject newExplosion = Instantiate(shipCollision, transform.position, transform.rotation);
-        Destroy(newExplosion, 2f);
-        //Destroy the object spaceship collides with.
-        Destroy(collision.gameObject);
-        mg.UpdateNumAsteroids(-1);
+        Destroy(newExplosion, 2f);      
 
         //Makes player invincible for 2 seconds after taking damage to not get hit multiple times at same time.
         Invulnerable();
-        Invoke("Targetable",3f);                    
+        Invoke("Targetable", 3f);
     }
 
     void GameOver()
@@ -186,8 +203,7 @@ public class SpaceShipController : MonoBehaviour
         //should chage this code
         Invulnerable();
         gameOverPanel.SetActive(true);
-        Destroy(spaceship);
-        
+        sr.enabled = false;
     }
 
     //Invookes when play again is clicked in death menu.
