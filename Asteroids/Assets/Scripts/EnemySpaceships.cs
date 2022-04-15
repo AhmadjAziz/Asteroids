@@ -20,7 +20,6 @@ public class EnemySpaceships : MonoBehaviour
     [SerializeField] private float spawnDelay;
     [SerializeField] private GameObject spawnPosition; 
     
-    private float levelStartTime;
     private float lastShot = 0f;
     private Vector2 movement;
     private float angle;
@@ -34,8 +33,7 @@ public class EnemySpaceships : MonoBehaviour
         player = GameObject.FindWithTag("Player").transform;
         rb = GetComponent<Rigidbody2D>();
         //Enemy spaceship will spawn once between levels with rand delay.
-        Invoke("Enabled", spawnDelay);
-        Disable();
+        NewLevel();
     }
 
     // Update is called once per frame
@@ -91,11 +89,8 @@ public class EnemySpaceships : MonoBehaviour
         rb.MovePosition((Vector2)rb.position + (direction * speed * Time.fixedDeltaTime));
     }
 
-    public void Enabled()
+    private void Enabled()
     {
-        levelStartTime = Time.time;
-        spawnDelay = Random.Range(5f, 10f);
-
         transform.position= spawnPosition.transform.position;
 
         //turn on colliders and sprite
@@ -112,6 +107,13 @@ public class EnemySpaceships : MonoBehaviour
         boxCollider.enabled = false;   
         spriteRenderer.enabled = false;
         disabled = true;        
+    }
+
+    public void NewLevel()
+    {
+        Disable();
+        spawnDelay = Random.Range(5f, 20f);
+        Invoke("Enable", spawnDelay);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

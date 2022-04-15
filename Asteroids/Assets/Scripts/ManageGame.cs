@@ -7,7 +7,7 @@ public class ManageGame : MonoBehaviour
     [SerializeField] private int numAsteroids; // total number of asteroids in the scene.
     [SerializeField] private int levelNumber;
     [SerializeField] GameObject asteroid;
-    [SerializeField] GameObject EnemySpaceship;
+    [SerializeField] EnemySpaceships enemy;
 
 
     public void UpdateNumAsteroids(int change)
@@ -26,7 +26,7 @@ public class ManageGame : MonoBehaviour
     {
         levelNumber++;
         numAsteroids = levelNumber * 2;
-        EnemySpaceship.GetComponent<EnemySpaceships>().Enabled();
+        enemy.NewLevel();
 
         //Spawn New Asteroids.
         for (int i = 0; i < numAsteroids; i++)
