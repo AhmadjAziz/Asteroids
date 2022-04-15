@@ -18,13 +18,15 @@ public class EnemySpaceships : MonoBehaviour
     [SerializeField] private bool disabled; //true when enemy is disabled.
     [SerializeField] private int points;
     [SerializeField] private float spawnDelay;
-    [SerializeField] private GameObject spawnPosition; 
+    [SerializeField] private GameObject spawnPosition;
+    [SerializeField] private int currentlevel;
     
     private float lastShot = 0f;
     private Vector2 movement;
     private float angle;
     private Rigidbody2D rb;
     private Transform player;
+    private float nextLevelEnemyIncrement = 1.25f;
 
 
     // Start is called before the first frame update
@@ -112,8 +114,18 @@ public class EnemySpaceships : MonoBehaviour
     public void NewLevel()
     {
         Disable();
+        if (currentlevel != 0)
+        {
+            speed = speed * nextLevelEnemyIncrement;
+            bulletSpeed = bulletSpeed * nextLevelEnemyIncrement;
+        }
+        
+        currentlevel++;
+
         spawnDelay = Random.Range(5f, 20f);
+        
         Invoke("Enabled", spawnDelay);
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
