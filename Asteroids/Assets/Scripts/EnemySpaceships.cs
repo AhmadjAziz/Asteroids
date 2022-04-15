@@ -17,18 +17,25 @@ public class EnemySpaceships : MonoBehaviour
     [SerializeField] private Collider2D boxCollider;
     [SerializeField] private bool disabled; //true when enemy is disabled.
     [SerializeField] private int points;
-
+    [SerializeField] private float spawnDelay;
+    [SerializeField] private GameObject spawnPosition; 
+    
+    private float levelStartTime;
     private float lastShot = 0f;
     private Vector2 movement;
     private float angle;
     private Rigidbody2D rb;
     private Transform player;
 
+
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindWithTag("Player").transform;
         rb = GetComponent<Rigidbody2D>();
+        //Enemy spaceship will spawn once between levels with rand delay.
+        Invoke("Enabled", spawnDelay);
+        Disable();
     }
 
     // Update is called once per frame
@@ -60,8 +67,8 @@ public class EnemySpaceships : MonoBehaviour
 
             newBullet.GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(0f, bulletSpeed));
             lastShot = Time.time;
-            //Destroy bullet after 8 seconds.
-            Destroy(newBullet, 8f);
+            //Destroy bullet after 10 seconds.
+            Destroy(newBullet, 10f);
         }
     }
 
@@ -82,6 +89,20 @@ public class EnemySpaceships : MonoBehaviour
     void moveCharacter(Vector2 direction)
     {
         rb.MovePosition((Vector2)rb.position + (direction * speed * Time.fixedDeltaTime));
+    }
+
+    public void Enabled()
+    {
+        levelStartTime = Time.time;
+        spawnDelay = Random.Range(5f, 10f);
+
+        transform.position= spawnPosition.transform.position;
+
+        //turn on colliders and sprite
+        circleCollider.enabled = true;
+        boxCollider.enabled = true;
+        spriteRenderer.enabled = true;
+        disabled = false;
     }
 
     private void Disable()
