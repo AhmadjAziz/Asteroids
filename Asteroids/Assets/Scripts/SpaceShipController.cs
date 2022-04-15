@@ -173,6 +173,7 @@ public class SpaceShipController : MonoBehaviour
         {
             LoseLife();
             Destroy(other.gameObject);
+            
         }
     }
 

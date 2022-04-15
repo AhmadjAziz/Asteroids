@@ -113,7 +113,7 @@ public class EnemySpaceships : MonoBehaviour
     {
         Disable();
         spawnDelay = Random.Range(5f, 20f);
-        Invoke("Enable", spawnDelay);
+        Invoke("Enabled", spawnDelay);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -127,5 +127,13 @@ public class EnemySpaceships : MonoBehaviour
             //Destroy the Alien
             Disable();
         }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.CompareTag("Player")) ;
+            GameObject newExplosion = Instantiate(destroyEffect, transform.position, transform.rotation);
+            Destroy(newExplosion, 3f);
+            //Destroy the Alien
+            Disable();
     }
 }
