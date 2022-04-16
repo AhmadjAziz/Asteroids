@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7284548326279396520}
   - component: {fileID: 7284548326279396521}
   - component: {fileID: 7284548326279396522}
+  - component: {fileID: 1805119000}
   m_Layer: 0
   m_Name: Large asteroid
   m_TagString: Untagged
@@ -141,6 +142,7 @@ MonoBehaviour:
   lowerBoundary: -22
   leftBoundary: -38
   rightBoundary: 38
+  asteroidMovement: {fileID: 1805119000}
   asteroidSize: 3
   asteroidMedium: {fileID: 7902416232612684930, guid: bb5233aa632d8e54887239859c3135d7,
     type: 3}
@@ -149,3 +151,22 @@ MonoBehaviour:
   points: 2
   onHitEffect: {fileID: 1000011128802252, guid: 96730f8640590934eacb6f860058e7f9,
     type: 3}
+--- !u!114 &1805119000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7284548326279396517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 652417c162b37d04ea746001ea6ab8c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxThrust: 600
+  maxTorque: 20
+  upperBoundary: 22
+  lowerBoundary: -22
+  leftBoundary: -38
+  rightBoundary: 38
+  rb: {fileID: 7284548326279396521}

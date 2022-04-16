@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(SpriteRenderer))]
@@ -30,6 +29,7 @@ public class SpaceShipController : MonoBehaviour
     [SerializeField] private Text livesText;
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject spaceship;
+
 
 
     private ManageGame mg;
@@ -207,9 +207,4 @@ public class SpaceShipController : MonoBehaviour
         sr.enabled = false;
     }
 
-    //Invookes when play again is clicked in death menu.
-    public void PlayAgain()
-    {
-        SceneManager.LoadScene("GameScreen");
-    }
 }
