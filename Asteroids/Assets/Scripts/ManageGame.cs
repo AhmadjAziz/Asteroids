@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ManageGame : MonoBehaviour
 {
@@ -34,5 +35,16 @@ public class ManageGame : MonoBehaviour
             Vector2 spawnPos = new Vector2(Random.RandomRange(-38, 38), 22f);
             Instantiate(asteroid, spawnPos, Quaternion.identity);
         }
+    }
+
+    //Invokes when play again is clicked in death menu.
+    public void PlayAgain()
+    {
+        SceneManager.LoadScene("GameScreen");
+    }
+    //Invokes when Main Menu is clicked in death menu.
+    public void ReturnStartMenu()
+    {
+        SceneManager.LoadScene("StartMenu");
     }
 }
