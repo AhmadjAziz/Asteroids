@@ -20,19 +20,20 @@ public class EnemySpaceships : MonoBehaviour
     [SerializeField] private float spawnDelay;
     [SerializeField] private GameObject spawnPosition;
     [SerializeField] private int currentlevel;
-    
+    [SerializeField] private GameObject player;
+
     private float lastShot = 0f;
     private Vector2 movement;
     private float angle;
     private Rigidbody2D rb;
-    private Transform player;
+    
     private float nextLevelEnemyIncrement = 1.25f;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindWithTag("Player").transform;
+        
         rb = GetComponent<Rigidbody2D>();
         //Enemy spaceship will spawn once between levels with rand delay.
         NewLevel();
@@ -44,7 +45,7 @@ public class EnemySpaceships : MonoBehaviour
         if (!disabled)
         {
             ShootPlayer();
-            LookAtPlayer();
+            DecideTarget();
         }
        
     }
@@ -75,10 +76,10 @@ public class EnemySpaceships : MonoBehaviour
     void LookAtPlayer()
     {
         //making Enemy look at player.
-        direction = (player.position - transform.position);
+        direction = (player.transform.position - transform.position);
         angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-        if(player.position != transform.position)
+        if(player.transform.position != transform.position)
         {
             rb.rotation = angle;
         }
@@ -142,10 +143,31 @@ public class EnemySpaceships : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform.CompareTag("Player")) ;
+        if (collision.transform.CompareTag("Player"))
+        {
+            player.SendMessage("PointsScore", points);
+            //Explosion
             GameObject newExplosion = Instantiate(destroyEffect, transform.position, transform.rotation);
             Destroy(newExplosion, 3f);
-            //Destroy the Alien
-            Disable();
+        }
+    }
+    void DecideTarget()
+    {
+        if (player.GetComponent<SpaceShipController>().canHit == false)
+        {
+            direction = (spawnPosition.transform.position - transform.position);
+            angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+            if (spawnPosition.transform.position != transform.position)
+            {
+                rb.rotation = angle;
+            }
+
+            direction.Normalize();
+            movement = direction;
+        } else
+        {
+            LookAtPlayer();
+        }
     }
 }

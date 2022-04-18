@@ -18,7 +18,7 @@ public class SpaceShipController : MonoBehaviour
     [SerializeField] private GameObject bullet;
     [SerializeField] private float bulletSpeed;
     [SerializeField] private int lives;
-    [SerializeField] private bool canHit = true;
+     
     [SerializeField] private BoxCollider2D horizontalCollider;
     [SerializeField] private BoxCollider2D verticalCollider;
     [SerializeField] private GameObject shipCollision;
@@ -27,8 +27,12 @@ public class SpaceShipController : MonoBehaviour
     [SerializeField] private Color normColor;
     [SerializeField] private Text scoreText;
     [SerializeField] private Text livesText;
+    [SerializeField] private Text highscoreText;
+    [SerializeField] private Text highscoreListText;
     [SerializeField] private GameObject gameOverPanel;
+    [SerializeField] private GameObject newHighScorePanel;
     [SerializeField] private GameObject spaceship;
+    [SerializeField] private ManageGame manageGame;
 
 
 
@@ -36,6 +40,8 @@ public class SpaceShipController : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer sr;
     private int score;
+    
+    public bool canHit = true;
 
     //need to set up max speed of spaceship.
     // private float maxShipSpeed = 200;
@@ -184,7 +190,7 @@ public class SpaceShipController : MonoBehaviour
 
         if (lives <= 0)
         {
-            GameOver();
+            Death();
             return;
         }
 
@@ -197,14 +203,40 @@ public class SpaceShipController : MonoBehaviour
         Invoke("Targetable", 3f);
     }
 
-    void GameOver()
+    void Death()
     {
         GameObject newDestroy = Instantiate(shipDestroy, transform.position, transform.rotation);
         Destroy(newDestroy, 2f);
+        
         //should chage this code
         Invulnerable();
-        gameOverPanel.SetActive(true);
         sr.enabled = false;
+        NewHighScore();
+       
+
+    }
+
+    public void NewHighScore()
+    {
+        if (manageGame.CheckForHighScore(score))
+        {
+            highscoreText.text = score.ToString();
+            newHighScorePanel.SetActive(true);
+            PlayerPrefs.SetInt("highscore", score);
+            highscoreListText.text = "HIGH SCORES" + "\n\n" + PlayerPrefs.GetInt("highscore");
+            Invoke("GameOverPanel", 3f);
+        }
+        else
+        {
+            highscoreListText.text = "HIGH SCORES" + "\n\n" + PlayerPrefs.GetInt("highscore");
+            GameOverPanel();
+        }
+    }
+    
+    void GameOverPanel()
+    {
+        gameOverPanel.SetActive(true);
+        newHighScorePanel.SetActive(false);
     }
 
 }

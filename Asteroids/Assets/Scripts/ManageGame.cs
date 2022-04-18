@@ -47,4 +47,14 @@ public class ManageGame : MonoBehaviour
     {
         SceneManager.LoadScene("StartMenu");
     }
+
+    public bool CheckForHighScore(int score)
+    {
+        int currentHighScore = PlayerPrefs.GetInt("highscore");
+        if (score > currentHighScore)
+        {
+            return true;
+        }
+        return false;
+    }
 }
