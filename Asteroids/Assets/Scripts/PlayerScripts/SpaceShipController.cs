@@ -30,7 +30,8 @@ public class SpaceShipController : MonoBehaviour
     [SerializeField] private GameObject spaceship;
     [SerializeField] private ManageGame manageGame;
     [SerializeField] private PlayerMovement playerMovement;
-    
+    [SerializeField] private ScreenWrapper screenWrapper;
+
 
 
     private ManageGame mg;
@@ -63,7 +64,7 @@ public class SpaceShipController : MonoBehaviour
     void Update()
     {
        playerMovement.CheckMovement();
-        ScreenWrapper();
+        screenWrapper.CheckBounds();
         FireBullet();
 
     }
@@ -71,33 +72,6 @@ public class SpaceShipController : MonoBehaviour
     {
         //Add some thrust every few frame to give that delayed feel of old retro games.
         playerMovement.AddThrust();
-    }
-
-    /**
-     * If spaceship goes beyond a boundary, it will pop back from another side.
-     **/
-    private void ScreenWrapper()
-    {
-
-        
-        Vector2 newPosition = transform.position;
-        if (transform.position.y > upperBoundary)
-        {
-            newPosition.y = lowerBoundary;
-        }
-        if (transform.position.y < lowerBoundary)
-        {
-            newPosition.y = upperBoundary;
-        }
-        if (transform.position.x > rightBoundary)
-        {
-            newPosition.x = leftBoundary;
-        }
-        if (transform.position.x < leftBoundary)
-        {
-            newPosition.x = rightBoundary;
-        }
-        transform.position = newPosition;
     }
 
     /**
@@ -109,7 +83,7 @@ public class SpaceShipController : MonoBehaviour
         {
             GameObject newBullet = Instantiate(bullet, transform.position, transform.rotation);
             newBullet.GetComponent<Rigidbody2D>().AddRelativeForce(Vector2.up * bulletSpeed);
-            Destroy(newBullet, 3.0f);
+            Destroy(newBullet, 2.0f);
         }
     }
 

@@ -386,8 +386,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab8f3529e1c87b34dac88011d6974c12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationalThrust: 10
+  rotationalThrust: 100
   rb: {fileID: 1518279943}
+  maxThrust: 5
+  speed: {x: 0, y: 0, z: 0}
+  forwardThrust: 5
+--- !u!114 &1518279941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1518279939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 783aeec34f88f8b4b8caca4c17dc6def, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upperBoundary: 21.1
+  lowerBoundary: -21.1
+  leftBoundary: -36
+  rightBoundary: 36
 --- !u!50 &1518279943 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 2920399885826378386, guid: 6aa573c554cc236408a072a5c692e064,
@@ -815,6 +834,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2920399885826378386, guid: 6aa573c554cc236408a072a5c692e064,
+        type: 3}
+      propertyPath: m_Simulated
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2920399885826378387, guid: 6aa573c554cc236408a072a5c692e064,
         type: 3}
       propertyPath: m_Name
@@ -855,6 +879,11 @@ PrefabInstance:
       propertyPath: manageGame
       value: 
       objectReference: {fileID: 180430629}
+    - target: {fileID: 2920399885826378399, guid: 6aa573c554cc236408a072a5c692e064,
+        type: 3}
+      propertyPath: bulletSpeed
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 2920399885826378399, guid: 6aa573c554cc236408a072a5c692e064,
         type: 3}
       propertyPath: gameOverPanel
