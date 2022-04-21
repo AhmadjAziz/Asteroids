@@ -57,7 +57,7 @@ public class EnemySpaceships : MonoBehaviour
 
     void ShootPlayer()
     {
-        if(Time.time > lastShot + shootingDelay)
+        if(Time.time > lastShot + shootingDelay && player.GetComponent<SpaceShipController>().canHit == true)           
         {
             lastShot = Time.time;
             angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;

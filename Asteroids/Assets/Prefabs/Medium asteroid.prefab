@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 7902416232612684930}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.7, y: 3.33, z: 0}
-  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
+  m_LocalScale: {x: 6, y: 6, z: 6}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -98,8 +98,8 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 1
-  m_Mass: 1.3601611
+  m_UseAutoMass: 0
+  m_Mass: 2
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -160,10 +160,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxThrust: 200
   maxTorque: 20
-  upperBoundary: 20.8
-  lowerBoundary: -20.8
-  leftBoundary: -36.5
-  rightBoundary: 36.5
+  upperBoundary: 21.6
+  lowerBoundary: -21.6
+  leftBoundary: -37.5
+  rightBoundary: 37.5
   rb: {fileID: 7902416232612684937}
 --- !u!114 &8855768612273584070
 MonoBehaviour:
@@ -177,7 +177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 783aeec34f88f8b4b8caca4c17dc6def, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upperBoundary: 20.8
-  lowerBoundary: -20.8
-  leftBoundary: 36.5
-  rightBoundary: 36.5
+  upperBoundary: 21.6
+  lowerBoundary: -21.6
+  leftBoundary: -37.5
+  rightBoundary: 37.5

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7284548326279396521}
   - component: {fileID: 7284548326279396522}
   - component: {fileID: 1805119000}
-  - component: {fileID: 1601470377216370649}
+  - component: {fileID: 322463875}
   m_Layer: 0
   m_Name: Large asteroid
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 7284548326279396517}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.11, y: -1.97, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 6, y: 6, z: 6}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -114,8 +114,8 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 1
-  m_Mass: 4.3743534
+  m_UseAutoMass: 0
+  m_Mass: 3
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -146,7 +146,7 @@ MonoBehaviour:
   points: 2
   onHitEffect: {fileID: 1000011128802252, guid: 96730f8640590934eacb6f860058e7f9,
     type: 3}
-  screenWrap: {fileID: 1601470377216370649}
+  screenWrap: {fileID: 322463875}
 --- !u!114 &1805119000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,12 +161,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxThrust: 600
   maxTorque: 20
-  upperBoundary: 22
-  lowerBoundary: -22
-  leftBoundary: -38
-  rightBoundary: 38
+  upperBoundary: 24.7
+  lowerBoundary: -24.7
+  leftBoundary: -40.5
+  rightBoundary: 40.5
   rb: {fileID: 7284548326279396521}
---- !u!114 &1601470377216370649
+--- !u!114 &322463875
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -178,7 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 783aeec34f88f8b4b8caca4c17dc6def, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upperBoundary: 22
-  lowerBoundary: -22
-  leftBoundary: -38
-  rightBoundary: 38
+  upperBoundary: 24.7
+  lowerBoundary: -24.7
+  leftBoundary: -40.5
+  rightBoundary: 40.5

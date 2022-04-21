@@ -13,6 +13,7 @@ public class AsteroidAi : MonoBehaviour
     [SerializeField] private GameObject asteroidSmall;
     [SerializeField] private int points;
     [SerializeField] private GameObject onHitEffect;
+    [SerializeField] private ScreenWrapper screenWrap;
 
     private ManageGame mg;
     private GameObject spaceship;
@@ -28,7 +29,7 @@ public class AsteroidAi : MonoBehaviour
 
     void Update()
     {
-        asteroidMovement.CheckBounds();
+        screenWrap.CheckBounds();
     }
 
     //Collision between asteroid and objects. i.e bullet.
