@@ -4,6 +4,7 @@ using UnityEngine;using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    [SerializeField] Animator transitioin;
     public void StartGame()
     {
         SceneManager.LoadScene("GameScreen");

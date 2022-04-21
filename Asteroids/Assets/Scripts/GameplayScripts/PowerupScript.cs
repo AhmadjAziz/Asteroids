@@ -56,6 +56,5 @@ public class PowerupScript : MonoBehaviour
             powerupID = Random.Range(1, totalPowerups);
             Invoke("InstantiatePowerup", delay);
         }
-        
     }
 }
