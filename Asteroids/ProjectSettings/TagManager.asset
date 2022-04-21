@@ -7,6 +7,10 @@ TagManager:
   - bullet
   - Enemy
   - EnemyBullet
+  - PlusLife
+  - MinusLife
+  - Invincible
+  - Size
   layers:
   - Default
   - TransparentFX
