@@ -128,9 +128,41 @@ public class SpaceShipController : MonoBehaviour
         if (other.CompareTag("EnemyBullet") && canHit ==true)
         {
             LoseLife();
-            Destroy(other.gameObject);
-            
+            Destroy(other.gameObject); 
         }
+
+        if (other.CompareTag("PlusLife"))
+        {
+            GainLife();
+            Destroy(other.gameObject);
+        }
+        if (other.CompareTag("MinusLife"))
+        {
+            LoseLife();
+            Destroy(other.gameObject);
+        }
+        if (other.CompareTag("Invincible"))
+        {
+            Invulnerable();
+            Invoke("Targetable", 5f);
+            Destroy(other.gameObject);
+        }
+        if (other.CompareTag("Size"))
+        {
+            IncreaseSize();
+            Invoke("normalSize", 5f);
+            Destroy(other.gameObject);
+        }
+
+    }
+
+    void IncreaseSize()
+    {
+        transform.localScale = new Vector3(0.6f,0.6f,0.6f);
+    }
+    void normalSize()
+    {
+        transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
     }
 
     void LoseLife()
@@ -153,7 +185,13 @@ public class SpaceShipController : MonoBehaviour
         Invoke("Targetable", 3f);
     }
 
-    void Death()
+    void GainLife()
+    {
+        lives++;
+        livesText.text = "Lives: " + lives;
+    }
+
+        void Death()
     {
         GameObject newDestroy = Instantiate(shipDestroy, transform.position, transform.rotation);
         Destroy(newDestroy, 2f);

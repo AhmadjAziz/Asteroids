@@ -9,7 +9,7 @@ public class ManageGame : MonoBehaviour
     [SerializeField] private int levelNumber;
     [SerializeField] GameObject asteroid;
     [SerializeField] EnemySpaceships enemy;
-
+    [SerializeField] PowerupScript powerupScript;
 
     public void UpdateNumAsteroids(int change)
     {
@@ -25,6 +25,7 @@ public class ManageGame : MonoBehaviour
     
     void StartNewLevel()
     {
+        powerupScript.powerupsCalled = 0;
         levelNumber++;
         numAsteroids = levelNumber * 2;
         enemy.NewLevel();
