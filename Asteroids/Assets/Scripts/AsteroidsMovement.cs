@@ -19,11 +19,7 @@ public class AsteroidsMovement: MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        ScreenWrapper();
-
-    }
+   
 
     private void AsteroidPush()
     {
@@ -33,7 +29,9 @@ public class AsteroidsMovement: MonoBehaviour
         rb.AddForce(thrust);
         rb.AddTorque(torque);
     }
-    private void ScreenWrapper()
+
+    //Check bounds for asteroids.
+    internal void CheckBounds()
     {
         Vector2 newPosition = transform.position;
         if (transform.position.y > upperBoundary)

@@ -26,6 +26,11 @@ public class AsteroidAi : MonoBehaviour
         mg = GameObject.FindObjectOfType<ManageGame>();
     }
 
+    void Update()
+    {
+        asteroidMovement.CheckBounds();
+    }
+
     //Collision between asteroid and objects. i.e bullet.
     void OnTriggerEnter2D(Collider2D collision)
     {

@@ -8,11 +8,12 @@ public class ScreenWrapper : MonoBehaviour
     [SerializeField] private float lowerBoundary;
     [SerializeField] private float leftBoundary;
     [SerializeField] private float rightBoundary;
+   
 
     /**
      * If spaceship goes beyond a boundary, it will pop back from another side.
      **/
-    public void CheckBounds()
+    internal void CheckBounds()
     {
         Vector2 newPosition = transform.position;
         if (transform.position.y > upperBoundary)
