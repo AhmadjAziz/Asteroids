@@ -374,6 +374,26 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2920399886513252967}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1518279940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1518279939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab8f3529e1c87b34dac88011d6974c12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationalThrust: 10
+  rb: {fileID: 1518279943}
+--- !u!50 &1518279943 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 2920399885826378386, guid: 6aa573c554cc236408a072a5c692e064,
+    type: 3}
+  m_PrefabInstance: {fileID: 2920399886513252967}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1778509344 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7003240081156391993, guid: 1bc5dca846ae9d34a8f235615e3b4a32,
@@ -802,6 +822,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2920399885826378399, guid: 6aa573c554cc236408a072a5c692e064,
         type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 1518279943}
+    - target: {fileID: 2920399885826378399, guid: 6aa573c554cc236408a072a5c692e064,
+        type: 3}
       propertyPath: lives
       value: 1
       objectReference: {fileID: 0}
@@ -840,6 +865,11 @@ PrefabInstance:
       propertyPath: highscoreText
       value: 
       objectReference: {fileID: 514186557}
+    - target: {fileID: 2920399885826378399, guid: 6aa573c554cc236408a072a5c692e064,
+        type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 1518279940}
     - target: {fileID: 2920399885826378399, guid: 6aa573c554cc236408a072a5c692e064,
         type: 3}
       propertyPath: highscoreListText

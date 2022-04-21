@@ -3,14 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(SpriteRenderer))]
 public class SpaceShipController : MonoBehaviour
 {
-    
-    [SerializeField] private float rotationalThrust;
-    [SerializeField] private float thrustInput;
-    [SerializeField] private float rotationalInput;
+
     [SerializeField] private float upperBoundary;
     [SerializeField] private float lowerBoundary;
     [SerializeField] private float leftBoundary;
@@ -33,11 +29,12 @@ public class SpaceShipController : MonoBehaviour
     [SerializeField] private GameObject newHighScorePanel;
     [SerializeField] private GameObject spaceship;
     [SerializeField] private ManageGame manageGame;
-
+    [SerializeField] private PlayerMovement playerMovement;
+    
 
 
     private ManageGame mg;
-    private Rigidbody2D rb;
+   
     private SpriteRenderer sr;
     private int score;
     
@@ -48,7 +45,6 @@ public class SpaceShipController : MonoBehaviour
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         
     }
@@ -66,7 +62,7 @@ public class SpaceShipController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CheckMovement();
+       playerMovement.CheckMovement();
         ScreenWrapper();
         FireBullet();
 
@@ -74,27 +70,7 @@ public class SpaceShipController : MonoBehaviour
     void FixedUpdate()
     {
         //Add some thrust every few frame to give that delayed feel of old retro games.
-        AddThrust();
-    }
-
-    /**
-     * Checks for input from keyboard, W,A,S.
-     * D is unassigned from unity InputManager as no backward movement.
-     * **/
-    private void CheckMovement()
-    {
-        thrustInput = Input.GetAxis("Vertical");
-        rotationalInput = Input.GetAxis("Horizontal");
-    }
-
-    /**
-     * Adds relative force that acclerates over time.
-     **/
-    private void AddThrust()
-    {
-        rb.AddRelativeForce(Vector2.up * thrustInput);
-        //The negative sign helps invert the keys
-       // rb.AddTorque(-rotationalInput);
+        playerMovement.AddThrust();
     }
 
     /**
@@ -103,7 +79,7 @@ public class SpaceShipController : MonoBehaviour
     private void ScreenWrapper()
     {
 
-        transform.Rotate(Vector3.forward * rotationalInput *Time.deltaTime * -rotationalThrust);
+        
         Vector2 newPosition = transform.position;
         if (transform.position.y > upperBoundary)
         {
@@ -133,7 +109,7 @@ public class SpaceShipController : MonoBehaviour
         {
             GameObject newBullet = Instantiate(bullet, transform.position, transform.rotation);
             newBullet.GetComponent<Rigidbody2D>().AddRelativeForce(Vector2.up * bulletSpeed);
-            Destroy(newBullet, 5.0f);
+            Destroy(newBullet, 3.0f);
         }
     }
 
