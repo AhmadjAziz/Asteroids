@@ -146,6 +146,7 @@ public class EnemySpaceships : MonoBehaviour
         if (collision.transform.CompareTag("Player"))
         {
             player.SendMessage("PointsScore", points);
+            player.SendMessage("CountAsteroidsDestroyed");
             //Explosion
             GameObject newExplosion = Instantiate(destroyEffect, transform.position, transform.rotation);
             Destroy(newExplosion, 3f);

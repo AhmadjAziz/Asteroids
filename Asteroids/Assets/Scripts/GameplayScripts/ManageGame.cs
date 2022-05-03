@@ -33,7 +33,7 @@ public class ManageGame : MonoBehaviour
         //Spawn New Asteroids.
         for (int i = 0; i < numAsteroids; i++)
         {
-            Vector2 spawnPos = new Vector2(Random.RandomRange(-38, 38), 22f);
+            Vector2 spawnPos = new Vector2(Random.Range(-38, 38), 22f);
             Instantiate(asteroid, spawnPos, Quaternion.identity);
         }
     }

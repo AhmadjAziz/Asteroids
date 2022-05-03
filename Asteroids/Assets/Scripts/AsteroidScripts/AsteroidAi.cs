@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -18,10 +17,12 @@ public class AsteroidAi : MonoBehaviour
     private ManageGame mg;
     private GameObject spaceship;
 
+    
+
     // Start is called before the first frame update
     void Start()
     {
-
+        
         //Find Player.
         spaceship = GameObject.FindWithTag("Player");
         mg = GameObject.FindObjectOfType<ManageGame>();
@@ -64,7 +65,9 @@ public class AsteroidAi : MonoBehaviour
 
             }
             //Destroys the current asteroid hit by bullet.
+           
             spaceship.SendMessage("PointsScore", points);
+            spaceship.SendMessage("CountAsteroidsDestroyed");
 
             //Causes an explosion at the asteroid hit by bullet.
             GameObject newExplosion = Instantiate(onHitEffect, transform.position, transform.rotation);
@@ -72,6 +75,7 @@ public class AsteroidAi : MonoBehaviour
             //Destroys the old asteroid
             Destroy(gameObject);
 
+           
         }
         
     }

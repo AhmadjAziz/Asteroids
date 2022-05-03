@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,7 +13,7 @@ public class SpaceShipController : MonoBehaviour
     [SerializeField] private GameObject bullet;
     [SerializeField] private float bulletSpeed;
     [SerializeField] private int lives;
-     
+
     [SerializeField] private BoxCollider2D horizontalCollider;
     [SerializeField] private BoxCollider2D verticalCollider;
     [SerializeField] private GameObject shipCollision;
@@ -32,13 +31,15 @@ public class SpaceShipController : MonoBehaviour
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private ScreenWrapper screenWrapper;
 
-
+    //Achievement system using unity observer pattern (Events)
+    public static event Action<int, string> scoreReached;
+    public static event Action<int, string> asteroidMilstoneReached;
 
     private ManageGame mg;
-   
+    private int totalAsteroidsDestroyed;
     private SpriteRenderer sr;
     private int score;
-    
+
     public bool canHit = true;
 
     //need to set up max speed of spaceship.
@@ -47,7 +48,7 @@ public class SpaceShipController : MonoBehaviour
     private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
-        
+
     }
     // Start is called before the first frame update
     void Start()
@@ -56,14 +57,15 @@ public class SpaceShipController : MonoBehaviour
         score = 0;
         scoreText.text = "Score: " + score;
         livesText.text = "Lives: " + lives;
+        totalAsteroidsDestroyed = 0;
         mg = GameObject.FindObjectOfType<ManageGame>();
-       
+
     }
 
     // Update is called once per frame
     void Update()
     {
-       playerMovement.CheckMovement();
+        playerMovement.CheckMovement();
         screenWrapper.CheckBounds();
         FireBullet();
 
@@ -79,18 +81,61 @@ public class SpaceShipController : MonoBehaviour
      **/
     private void FireBullet()
     {
-        if(Input.GetButtonDown("Fire"))
+        if (Input.GetButtonDown("Fire"))
         {
             GameObject newBullet = Instantiate(bullet, transform.position, transform.rotation);
             newBullet.GetComponent<Rigidbody2D>().AddRelativeForce(Vector2.up * bulletSpeed);
             Destroy(newBullet, 2.0f);
         }
     }
+    void CountAsteroidsDestroyed()
+    {
+        totalAsteroidsDestroyed++;
+        //Checks if achievement milestone is reached.
+        if (totalAsteroidsDestroyed == 10)
+            asteroidMilstoneReached(10, "Noob Miner");
 
+        if (totalAsteroidsDestroyed == 50)
+            asteroidMilstoneReached(50, "Begining Miner");
+
+        if (totalAsteroidsDestroyed == 100)
+            asteroidMilstoneReached(100, "Decent Miner");
+
+        if (totalAsteroidsDestroyed == 200)
+            asteroidMilstoneReached(200, "Master Miner");
+
+        if (totalAsteroidsDestroyed == 400)
+            asteroidMilstoneReached(400, "Artist Miner");
+
+        if (totalAsteroidsDestroyed == 1000)
+            asteroidMilstoneReached(1000, "Elite Miner");
+
+        if (totalAsteroidsDestroyed == 2000)
+            asteroidMilstoneReached(2000, "King Pin Miner");
+    }
+    //Gain points on killing asteroids and enemy. Also calls Achievement system when threshold score is reached.
     void PointsScore(int points)
     {
         score += points;
         scoreText.text = "Score: " + score;
+
+        if (score >= 100)
+            scoreReached(100, "Rookie ");
+
+        if (score >= 200)
+            scoreReached(200, "Beginner");
+
+        if (score >= 500)
+            scoreReached(500, "Decent");
+
+        if (score >= 1000)
+            scoreReached(1000, "Master");
+
+        if(score >= 2000)
+            scoreReached(2000, "Artist");
+
+        if(score >= 5000)
+            scoreReached(5000, "Star Trooper");
     }
 
     /**
@@ -115,7 +160,7 @@ public class SpaceShipController : MonoBehaviour
     }
 
     //spaceship colliding with asteroid. Player dies if lives end.
-     void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
         LoseLife();
         // destroy the item spaceship collides with.
@@ -125,10 +170,10 @@ public class SpaceShipController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("EnemyBullet") && canHit ==true)
+        if (other.CompareTag("EnemyBullet") && canHit == true)
         {
             LoseLife();
-            Destroy(other.gameObject); 
+            Destroy(other.gameObject);
         }
 
         if (other.CompareTag("PlusLife"))
@@ -158,7 +203,7 @@ public class SpaceShipController : MonoBehaviour
 
     void IncreaseSize()
     {
-        transform.localScale = new Vector3(0.6f,0.6f,0.6f);
+        transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
     }
     void normalSize()
     {
@@ -178,7 +223,7 @@ public class SpaceShipController : MonoBehaviour
 
         //causes a tiny explosion when spaceship collides with asteroid.
         GameObject newExplosion = Instantiate(shipCollision, transform.position, transform.rotation);
-        Destroy(newExplosion, 2f);      
+        Destroy(newExplosion, 2f);
 
         //Makes player invincible for 2 seconds after taking damage to not get hit multiple times at same time.
         Invulnerable();
@@ -191,16 +236,16 @@ public class SpaceShipController : MonoBehaviour
         livesText.text = "Lives: " + lives;
     }
 
-        void Death()
+    void Death()
     {
         GameObject newDestroy = Instantiate(shipDestroy, transform.position, transform.rotation);
         Destroy(newDestroy, 2f);
-        
+
         //should chage this code
         Invulnerable();
         sr.enabled = false;
         NewHighScore();
-       
+
 
     }
 
@@ -220,7 +265,7 @@ public class SpaceShipController : MonoBehaviour
             GameOverPanel();
         }
     }
-    
+
     void GameOverPanel()
     {
         gameOverPanel.SetActive(true);
