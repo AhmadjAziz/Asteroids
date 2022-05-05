@@ -148,12 +148,12 @@ PrefabInstance:
     - target: {fileID: 7284548326279396523, guid: 7300b441f096c114a933e77b4faabd2d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.8
+      value: 21.1
       objectReference: {fileID: 0}
     - target: {fileID: 7284548326279396523, guid: 7300b441f096c114a933e77b4faabd2d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -24.1
+      value: -23.8
       objectReference: {fileID: 0}
     - target: {fileID: 7284548326279396523, guid: 7300b441f096c114a933e77b4faabd2d,
         type: 3}
@@ -989,25 +989,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2920399886513252967}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &1518279949
+--- !u!95 &1518279940 stripped
 Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 1518279949, guid: 6aa573c554cc236408a072a5c692e064,
+    type: 3}
+  m_PrefabInstance: {fileID: 2920399886513252967}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1518279939}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 77538968120693546b9b745c56beb335, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1612170971
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1486,6 +1473,14 @@ PrefabInstance:
       propertyPath: achievementPanel
       value: 
       objectReference: {fileID: 455617954}
+    - target: {fileID: 1518279949, guid: 6aa573c554cc236408a072a5c692e064, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1518279949, guid: 6aa573c554cc236408a072a5c692e064, type: 3}
+      propertyPath: m_CullingMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2920399885826378384, guid: 6aa573c554cc236408a072a5c692e064,
         type: 3}
       propertyPath: m_RootOrder
@@ -1546,21 +1541,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpaceShip
       objectReference: {fileID: 0}
-    - target: {fileID: 2920399885826378397, guid: 6aa573c554cc236408a072a5c692e064,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2920399885826378398, guid: 6aa573c554cc236408a072a5c692e064,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2920399885826378399, guid: 6aa573c554cc236408a072a5c692e064,
         type: 3}
-      propertyPath: animator
+      propertyPath: anim
       value: 
-      objectReference: {fileID: 1518279949}
+      objectReference: {fileID: 1518279940}
     - target: {fileID: 2920399885826378399, guid: 6aa573c554cc236408a072a5c692e064,
         type: 3}
       propertyPath: livesText

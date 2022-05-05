@@ -30,7 +30,6 @@ public class SpaceShipController : MonoBehaviour
     [SerializeField] private ManageGame manageGame;
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private ScreenWrapper screenWrapper;
-    [SerializeField] private Animator animator;
 
     //Achievement system using unity observer pattern (Events)
     public static event Action<int, string> scoreReached;
@@ -49,7 +48,7 @@ public class SpaceShipController : MonoBehaviour
     private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
-        Destroy(animator, 0.9f);
+        Destroy(GetComponent<Animator>(),1f);
 
     }
     // Start is called before the first frame update
@@ -116,6 +115,7 @@ public class SpaceShipController : MonoBehaviour
         if (totalAsteroidsDestroyed == 2000)
             asteroidMilstoneReached(2000, "King Pin Miner");
     }
+
     //Gain points on killing asteroids and enemy. Also calls Achievement system when threshold score is reached.
     void PointsScore(int points)
     {
@@ -134,10 +134,10 @@ public class SpaceShipController : MonoBehaviour
         if (score >= 1000)
             scoreReached(1000, "Master");
 
-        if(score >= 2000)
+        if (score >= 2000)
             scoreReached(2000, "Artist");
 
-        if(score >= 5000)
+        if (score >= 5000)
             scoreReached(5000, "Star Trooper");
     }
 
@@ -258,13 +258,17 @@ public class SpaceShipController : MonoBehaviour
         {
             highscoreText.text = score.ToString();
             newHighScorePanel.SetActive(true);
-            PlayerPrefs.SetInt("highscore", score);
-            highscoreListText.text = "HIGH SCORES" + "\n\n" + PlayerPrefs.GetInt("highscore");
+
+            //Set the highscore player name
+            PlayerPrefs.SetString("HighscorePlayer", PlayerPrefs.GetString("CurrentPlayer"));
+            //Set the highscore
+            PlayerPrefs.SetInt("Highscore", score);
+            highscoreListText.text = "HIGH SCORES" + "\n\n" + PlayerPrefs.GetInt("HighscorePlayer") + ": " + PlayerPrefs.GetInt("Highscore");
             Invoke("GameOverPanel", 3f);
         }
         else
         {
-            highscoreListText.text = "HIGH SCORES" + "\n\n" + PlayerPrefs.GetInt("highscore");
+            highscoreListText.text = "HIGH SCORES" + "\n\n" + PlayerPrefs.GetInt("HighscorePlayer") + ": " + PlayerPrefs.GetInt("Highscore");
             GameOverPanel();
         }
     }
@@ -274,5 +278,4 @@ public class SpaceShipController : MonoBehaviour
         gameOverPanel.SetActive(true);
         newHighScorePanel.SetActive(false);
     }
-
 }

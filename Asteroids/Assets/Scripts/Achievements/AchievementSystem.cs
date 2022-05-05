@@ -18,6 +18,13 @@ public class AchievementSystem : MonoBehaviour
         SpaceShipController.asteroidMilstoneReached += ThresholdAsteroidsDestroyed;
     }
 
+    private void OnDestroy()
+    {
+        SpaceShipController.scoreReached -= ThresholdScoreReached;
+        SpaceShipController.asteroidMilstoneReached -= ThresholdAsteroidsDestroyed;
+    }
+
+
     private void ThresholdScoreReached(int score, string achievementQuote)
     {
         string achievementKey = score + " reached";
