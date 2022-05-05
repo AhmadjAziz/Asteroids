@@ -259,16 +259,23 @@ public class SpaceShipController : MonoBehaviour
             highscoreText.text = score.ToString();
             newHighScorePanel.SetActive(true);
 
+            if(PlayerPrefs.GetString("CurrentPlayer").Equals("") == true)
+            {
+                PlayerPrefs.SetString("CurrentPlayer", "Player");
+            }
             //Set the highscore player name
             PlayerPrefs.SetString("HighscorePlayer", PlayerPrefs.GetString("CurrentPlayer"));
             //Set the highscore
             PlayerPrefs.SetInt("Highscore", score);
-            highscoreListText.text = "HIGH SCORES" + "\n\n" + PlayerPrefs.GetInt("HighscorePlayer") + ": " + PlayerPrefs.GetInt("Highscore");
+
+            //Displays the highscore
+            highscoreListText.text = "HIGH SCORES" + "\n\n" + PlayerPrefs.GetString("HighscorePlayer") + ": " + PlayerPrefs.GetInt("Highscore");
             Invoke("GameOverPanel", 3f);
         }
         else
         {
-            highscoreListText.text = "HIGH SCORES" + "\n\n" + PlayerPrefs.GetInt("HighscorePlayer") + ": " + PlayerPrefs.GetInt("Highscore");
+            //Displays the highscore
+            highscoreListText.text = "HIGH SCORES" + "\n\n" + PlayerPrefs.GetString("HighscorePlayer") + ": " + PlayerPrefs.GetInt("Highscore");
             GameOverPanel();
         }
     }

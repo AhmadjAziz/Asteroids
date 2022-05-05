@@ -51,7 +51,7 @@ public class ManageGame : MonoBehaviour
 
     public bool CheckForHighScore(int score)
     {
-        int currentHighScore = PlayerPrefs.GetInt("highscore");
+        int currentHighScore = PlayerPrefs.GetInt("Highscore");
         if (score > currentHighScore)
         {
             return true;
