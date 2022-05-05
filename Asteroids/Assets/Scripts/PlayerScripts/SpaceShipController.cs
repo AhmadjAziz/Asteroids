@@ -30,6 +30,7 @@ public class SpaceShipController : MonoBehaviour
     [SerializeField] private ManageGame manageGame;
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private ScreenWrapper screenWrapper;
+    [SerializeField] private Animator animator;
 
     //Achievement system using unity observer pattern (Events)
     public static event Action<int, string> scoreReached;
@@ -39,7 +40,7 @@ public class SpaceShipController : MonoBehaviour
     private int totalAsteroidsDestroyed;
     private SpriteRenderer sr;
     private int score;
-
+    
     public bool canHit = true;
 
     //need to set up max speed of spaceship.
@@ -48,6 +49,7 @@ public class SpaceShipController : MonoBehaviour
     private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
+        Destroy(animator, 0.9f);
 
     }
     // Start is called before the first frame update
@@ -59,6 +61,7 @@ public class SpaceShipController : MonoBehaviour
         livesText.text = "Lives: " + lives;
         totalAsteroidsDestroyed = 0;
         mg = GameObject.FindObjectOfType<ManageGame>();
+
 
     }
 

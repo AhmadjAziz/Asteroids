@@ -12,7 +12,6 @@ public class AsteroidAi : MonoBehaviour
     [SerializeField] private GameObject asteroidSmall;
     [SerializeField] private int points;
     [SerializeField] private GameObject onHitEffect;
-    [SerializeField] private ScreenWrapper screenWrap;
 
     private ManageGame mg;
     private GameObject spaceship;
@@ -26,11 +25,6 @@ public class AsteroidAi : MonoBehaviour
         //Find Player.
         spaceship = GameObject.FindWithTag("Player");
         mg = GameObject.FindObjectOfType<ManageGame>();
-    }
-
-    void Update()
-    {
-        screenWrap.CheckBounds();
     }
 
     //Collision between asteroid and objects. i.e bullet.
