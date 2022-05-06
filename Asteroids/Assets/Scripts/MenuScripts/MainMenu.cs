@@ -10,6 +10,10 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private GameObject optionsMenu;
     [SerializeField] private GameObject highscoresPanel;
     [SerializeField] private GameObject profilesPanel;
+    [SerializeField] private Animator canvasAnim;
+    [SerializeField] private Animator optionsAnim;
+    
+    private GameObject currentMenu;
 
     public void StartGame()
     {
@@ -18,9 +22,9 @@ public class MainMenu : MonoBehaviour
 
     public void MenuToOptions()
     {
-        menuButtons.SetActive(false);
+        optionsAnim.SetTrigger("Options");
         optionsMenu.SetActive(true);
-
+        menuButtons.SetActive(false);
     }
     
     public void OptionsToHighscore()
@@ -46,13 +50,19 @@ public class MainMenu : MonoBehaviour
         optionsMenu.SetActive(false);
     }
 
-    public void Profile_HighScore_To_Options()
+    public void ProfileToOptions()
     {
         optionsMenu.SetActive(true);
         profilesPanel.SetActive(false);
+    }
+
+    public void HighscoreToOptions()
+    {
+        optionsMenu.SetActive(true);
         highscoresPanel.SetActive(false);
     }
 
+    
     //transitions between scenes
     IEnumerator LoadLevel(int levelIndex)
     {
@@ -61,6 +71,8 @@ public class MainMenu : MonoBehaviour
 
         SceneManager.LoadScene(levelIndex);
     }
+
+
 
 
 }

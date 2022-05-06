@@ -13,7 +13,7 @@ public class AchievementSystem : MonoBehaviour
 
     void Start()
     {
-        //PlayerPrefs.DeleteAll();
+        PlayerPrefs.DeleteAll();
         SpaceShipController.scoreReached += ThresholdScoreReached;
         SpaceShipController.asteroidMilstoneReached += ThresholdAsteroidsDestroyed;
     }

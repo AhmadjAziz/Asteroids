@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ManageGame : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class ManageGame : MonoBehaviour
     [SerializeField] GameObject asteroid;
     [SerializeField] EnemySpaceships enemy;
     [SerializeField] PowerupScript powerupScript;
+    [SerializeField] Text levelUI;
 
     public void UpdateNumAsteroids(int change)
     {
@@ -29,6 +31,7 @@ public class ManageGame : MonoBehaviour
         levelNumber++;
         numAsteroids = levelNumber * 2;
         enemy.NewLevel();
+        levelUI.text = "Level: 2";
 
         //Spawn New Asteroids.
         for (int i = 0; i < numAsteroids; i++)
@@ -51,7 +54,7 @@ public class ManageGame : MonoBehaviour
 
     public bool CheckForHighScore(int score)
     {
-        int currentHighScore = PlayerPrefs.GetInt("Highscore");
+        int currentHighScore = PlayerPrefs.GetInt("highscore");
         if (score > currentHighScore)
         {
             return true;

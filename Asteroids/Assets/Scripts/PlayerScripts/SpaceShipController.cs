@@ -31,6 +31,7 @@ public class SpaceShipController : MonoBehaviour
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private ScreenWrapper screenWrapper;
 
+
     //Achievement system using unity observer pattern (Events)
     public static event Action<int, string> scoreReached;
     public static event Action<int, string> asteroidMilstoneReached;
@@ -58,6 +59,7 @@ public class SpaceShipController : MonoBehaviour
         score = 0;
         scoreText.text = "Score: " + score;
         livesText.text = "Lives: " + lives;
+
         totalAsteroidsDestroyed = 0;
         mg = GameObject.FindObjectOfType<ManageGame>();
 
