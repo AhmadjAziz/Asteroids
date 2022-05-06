@@ -52,7 +52,7 @@ public class PowerupScript : MonoBehaviour
 
         if(powerupsCalled != totalPowerupsPerLevel)
         {
-            delay = Random.Range(40, 60);
+            delay = Random.Range(25, 40);
             powerupID = Random.Range(1, totalPowerups);
             Invoke("InstantiatePowerup", delay);
         }

@@ -22,9 +22,10 @@ public class MainMenu : MonoBehaviour
 
     public void MenuToOptions()
     {
-        optionsAnim.SetTrigger("Options");
+        
         optionsMenu.SetActive(true);
         menuButtons.SetActive(false);
+        
     }
     
     public void OptionsToHighscore()

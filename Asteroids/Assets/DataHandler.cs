@@ -9,17 +9,7 @@ public class DataHandler : MonoBehaviour
     [SerializeField] private InputField playerNameInput;
     [SerializeField] private GameObject profilePanel;
     [SerializeField] private GameObject mainMenuPanel;
-    public void ShowHighScorer()
-    {
-        if (PlayerPrefs.GetInt("Highscore") == 0)
-        {
-            highscoreText.text = "HIGHEST SCORE" + "\n\n";
-        }
-        else
-        {
-            highscoreText.text = "HIGHEST SCORE" + "\n\n" + PlayerPrefs.GetString("HighscorePlayer") + ": " + PlayerPrefs.GetInt("Highscore");
-        }
-    }
+    
 
     public void EnterPlayerName()
     {

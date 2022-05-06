@@ -215,7 +215,7 @@ public class SpaceShipController : MonoBehaviour
             highscoreText.text = score.ToString();
             newHighScorePanel.SetActive(true);
 
-            if(PlayerPrefs.GetString("CurrentPlayer").Equals("") == true)
+            if(PlayerPrefs.GetString("CurrentPlayer").Equals(""))
             {
                 PlayerPrefs.SetString("CurrentPlayer", "Player");
             }
