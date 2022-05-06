@@ -9,7 +9,6 @@ public class SpaceShipController : MonoBehaviour
     [SerializeField] private GameObject bullet;
     [SerializeField] private float bulletSpeed;
     [SerializeField] private int lives;
-
     [SerializeField] private BoxCollider2D horizontalCollider;
     [SerializeField] private BoxCollider2D verticalCollider;
     [SerializeField] private GameObject shipCollision;
@@ -27,7 +26,6 @@ public class SpaceShipController : MonoBehaviour
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private ScreenWrapper screenWrapper;
 
-
     //Achievement system using unity observer pattern (Events)
     public static event Action<float> scoreReached;
     public static event Action<int> asteroidMilstoneReached;
@@ -38,9 +36,6 @@ public class SpaceShipController : MonoBehaviour
     private int score;
     
     public bool canHit = true;
-
-    //need to set up max speed of spaceship.
-    // private float maxShipSpeed = 200;
 
     private void Awake()
     {
