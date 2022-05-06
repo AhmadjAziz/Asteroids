@@ -31,7 +31,7 @@ public class ManageGame : MonoBehaviour
         levelNumber++;
         numAsteroids = levelNumber * 2;
         enemy.NewLevel();
-        levelUI.text = "Level: 2";
+        levelUI.text = "Level: " + levelNumber;
 
         //Spawn New Asteroids.
         for (int i = 0; i < numAsteroids; i++)

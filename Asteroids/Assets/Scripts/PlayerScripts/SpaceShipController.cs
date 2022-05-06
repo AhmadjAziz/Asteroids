@@ -6,10 +6,6 @@ using UnityEngine.UI;
 public class SpaceShipController : MonoBehaviour
 {
 
-    [SerializeField] private float upperBoundary;
-    [SerializeField] private float lowerBoundary;
-    [SerializeField] private float leftBoundary;
-    [SerializeField] private float rightBoundary;
     [SerializeField] private GameObject bullet;
     [SerializeField] private float bulletSpeed;
     [SerializeField] private int lives;
@@ -33,8 +29,8 @@ public class SpaceShipController : MonoBehaviour
 
 
     //Achievement system using unity observer pattern (Events)
-    public static event Action<int, string> scoreReached;
-    public static event Action<int, string> asteroidMilstoneReached;
+    public static event Action<float> scoreReached;
+    public static event Action<int> asteroidMilstoneReached;
 
     private ManageGame mg;
     private int totalAsteroidsDestroyed;
@@ -95,27 +91,7 @@ public class SpaceShipController : MonoBehaviour
     void CountAsteroidsDestroyed()
     {
         totalAsteroidsDestroyed++;
-        //Checks if achievement milestone is reached.
-        if (totalAsteroidsDestroyed == 10)
-            asteroidMilstoneReached(10, "Noob Miner");
-
-        if (totalAsteroidsDestroyed == 50)
-            asteroidMilstoneReached(50, "Begining Miner");
-
-        if (totalAsteroidsDestroyed == 100)
-            asteroidMilstoneReached(100, "Decent Miner");
-
-        if (totalAsteroidsDestroyed == 200)
-            asteroidMilstoneReached(200, "Master Miner");
-
-        if (totalAsteroidsDestroyed == 400)
-            asteroidMilstoneReached(400, "Artist Miner");
-
-        if (totalAsteroidsDestroyed == 1000)
-            asteroidMilstoneReached(1000, "Elite Miner");
-
-        if (totalAsteroidsDestroyed == 2000)
-            asteroidMilstoneReached(2000, "King Pin Miner");
+        asteroidMilstoneReached(totalAsteroidsDestroyed);
     }
 
     //Gain points on killing asteroids and enemy. Also calls Achievement system when threshold score is reached.
@@ -123,24 +99,7 @@ public class SpaceShipController : MonoBehaviour
     {
         score += points;
         scoreText.text = "Score: " + score;
-
-        if (score >= 100)
-            scoreReached(100, "Rookie ");
-
-        if (score >= 200)
-            scoreReached(200, "Beginner");
-
-        if (score >= 500)
-            scoreReached(500, "Decent");
-
-        if (score >= 1000)
-            scoreReached(1000, "Master");
-
-        if (score >= 2000)
-            scoreReached(2000, "Artist");
-
-        if (score >= 5000)
-            scoreReached(5000, "Star Trooper");
+        scoreReached(score);
     }
 
     /**

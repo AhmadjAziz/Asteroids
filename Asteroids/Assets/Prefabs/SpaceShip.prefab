@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 2920399885826378384}
   - component: {fileID: 2920399885826378385}
   - component: {fileID: 2920399885826378386}
-  - component: {fileID: 2920399885826378399}
   - component: {fileID: 2920399885826378397}
   - component: {fileID: 2920399885826378398}
+  - component: {fileID: 2920399885826378399}
   - component: {fileID: 1518279940}
   - component: {fileID: 1518279941}
   - component: {fileID: 1518279942}
@@ -111,44 +111,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &2920399885826378399
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2920399885826378387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bce1d5f0d7b601d429f0d3b9679bee23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  upperBoundary: 21.1
-  lowerBoundary: -21.1
-  leftBoundary: -36
-  rightBoundary: 36
-  bullet: {fileID: 3333786773089383084, guid: 8150b78758a11234db1dba3787759a54, type: 3}
-  bulletSpeed: 15
-  lives: 1
-  horizontalCollider: {fileID: 2920399885826378397}
-  verticalCollider: {fileID: 2920399885826378398}
-  shipCollision: {fileID: 1337198075554910, guid: 25c7aa9ad705fe143a4d71c1c8deb7d4,
-    type: 3}
-  shipDestroy: {fileID: 1121192042590650, guid: e1b08032bec16ba4eb1ae23cbd572664,
-    type: 3}
-  inColor: {r: 1, g: 0, b: 0, a: 0.3137255}
-  normColor: {r: 1, g: 1, b: 1, a: 1}
-  scoreText: {fileID: 0}
-  livesText: {fileID: 0}
-  highscoreText: {fileID: 0}
-  highscoreListText: {fileID: 0}
-  gameOverPanel: {fileID: 0}
-  newHighScorePanel: {fileID: 0}
-  spaceship: {fileID: 2920399885826378387}
-  manageGame: {fileID: 0}
-  playerMovement: {fileID: 1518279940}
-  screenWrapper: {fileID: 1518279941}
-  canHit: 1
 --- !u!61 &2920399885826378397
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -201,6 +163,44 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8559668, y: 7.6944437}
   m_EdgeRadius: 0
+--- !u!114 &2920399885826378399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2920399885826378387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bce1d5f0d7b601d429f0d3b9679bee23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upperBoundary: 21.1
+  lowerBoundary: -21.1
+  leftBoundary: -36
+  rightBoundary: 36
+  bullet: {fileID: 3333786773089383084, guid: 8150b78758a11234db1dba3787759a54, type: 3}
+  bulletSpeed: 15
+  lives: 1
+  horizontalCollider: {fileID: 2920399885826378397}
+  verticalCollider: {fileID: 2920399885826378398}
+  shipCollision: {fileID: 1337198075554910, guid: 25c7aa9ad705fe143a4d71c1c8deb7d4,
+    type: 3}
+  shipDestroy: {fileID: 1121192042590650, guid: e1b08032bec16ba4eb1ae23cbd572664,
+    type: 3}
+  inColor: {r: 1, g: 0, b: 0, a: 0.3137255}
+  normColor: {r: 1, g: 1, b: 1, a: 1}
+  scoreText: {fileID: 0}
+  livesText: {fileID: 0}
+  highscoreText: {fileID: 0}
+  highscoreListText: {fileID: 0}
+  gameOverPanel: {fileID: 0}
+  newHighScorePanel: {fileID: 0}
+  spaceship: {fileID: 2920399885826378387}
+  manageGame: {fileID: 0}
+  playerMovement: {fileID: 1518279940}
+  screenWrapper: {fileID: 1518279941}
+  canHit: 1
 --- !u!114 &1518279940
 MonoBehaviour:
   m_ObjectHideFlags: 0
